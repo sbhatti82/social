@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Social
+module SampleApp
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -19,8 +19,16 @@ module Social
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    
+    # Include the authenticity token in remote forms.
+    config.action_view.embed_authenticity_token_in_remote_forms = true
 
-    # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
+  # For Exception Notification configuration
+  config.middleware.use ExceptionNotification::Rack, :email => {
+  :email_prefix => "[Sample Application Error Report Created by Sandeep Bhatti] ",
+  :sender_address => %{"Sample App Notifier!" <bhattismtp@gmail.com>},
+  :exception_recipients => %w{s.bhatti2k1@gmail.com}
+  }
+
   end
 end
