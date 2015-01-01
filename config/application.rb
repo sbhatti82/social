@@ -26,8 +26,8 @@ module SampleApp
   # For Exception Notification configuration
   config.middleware.use ExceptionNotification::Rack, :email => {
   :email_prefix => "[Sample Application Error Report Created by Sandeep Bhatti] ",
-  :sender_address => %{"Sample App Notifier!" <bhattismtp@gmail.com>},
-  :exception_recipients => %w{s.bhatti2k1@gmail.com}
+  :sender_address => %{"Sample App Notifier!" <yourmail@domain.com>},
+  :exception_recipients => %w{recipientMail@domain.com}
   }
 
   end
